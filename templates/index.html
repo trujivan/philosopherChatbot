@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosopher Chatbot</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <h1>Ask a Philosopher</h1>
+        <div class="dropdown">
+            <label for="philosopher">Select a Philosopher:</label>
+            <select id="philosopher">
+                <option value="Seneca">Seneca</option>
+                <option value="Aristotle">Aristotle</option>
+                <option value="Plato">Plato</option>
+                <option value="Socrates">Socrates</option>
+                <option value="Nietzsche">Nietzsche</option>
+            </select>
+        </div>
+        <div class="chat-box">
+            <textarea id="question" placeholder="Ask a question..."></textarea>
+            <button id="submit-btn">Ask</button>
+            <div id="response"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('submit-btn').addEventListener('click', async () => {
+            const philosopher = document.getElementById('philosopher').value;
+            const question = document.getElementById('question').value;
+
+            const response = await fetch('/ask', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ philosopher, question })
+            });
+
+            const data = await response.json();
+            document.getElementById('response').innerText = data.answer;
+        });
+    </script>
+</body>
+</html>
