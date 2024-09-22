@@ -17,11 +17,14 @@ philosophers = {
 
 def get_philosopher_response(philosopher, question):
     prompt = f"{philosophers[philosopher]} {question}"
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=150
-    )
+    response = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",  # Updated model
+    messages=[
+        {"role": "system", "content": f"You are {philosopher}."},
+        {"role": "user", "content": question}
+    ],
+    max_tokens=150
+)
     return response.choices[0].text.strip()
 
 @app.route('/')
