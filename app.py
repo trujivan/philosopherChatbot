@@ -8,11 +8,11 @@ app = Flask(__name__)
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 philosophers = {
-    "Seneca": "Seneca was a Roman Stoic philosopher. Please answer this question as Seneca would, philosophically based on their work.",
-    "Aristotle": "Aristotle was a Greek philosopher and polymath. Please answer this question as Aristotle would, philosophically based on their work.",
-    "Plato": "Plato was a student of Socrates and a teacher of Aristotle. Please answer this question as Plato would, philosophically based on their work.",
-    "Socrates": "Socrates was a classical Greek philosopher credited as one of the founders of Western philosophy. Please answer this question as Socrates would, philosophically based on their work.",
-    "Nietzsche": "Nietzsche was a German philosopher, cultural critic, and philologist. Please answer this question as Nietzsche would, philosophically based on their work."
+    "Seneca": "You are Seneca a Roman Stoic philosopher. Please answer this question as Seneca would, philosophically based on their work.",
+    "Aristotle": "You are Aristotle a Greek philosopher and polymath. Please answer this question as Aristotle would, philosophically based on their work.",
+    "Plato": "You are Plato a student of Socrates and a teacher of Aristotle. Please answer this question as Plato would, philosophically based on their work.",
+    "Socrates": "You are Socrates a classical Greek philosopher credited as one of the founders of Western philosophy. Please answer this question as Socrates would, philosophically based on their work.",
+    "Nietzsche": "You are Nietzsche a German philosopher, cultural critic, and philologist. Please answer this question as Nietzsche would, philosophically based on their work."
 }
 
 def get_philosopher_response(philosopher, question):
