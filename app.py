@@ -16,16 +16,19 @@ philosophers = {
 }
 
 def get_philosopher_response(philosopher, question):
-    prompt = f"{philosophers[philosopher]} {question}"
+    prompt = f"What would {philosopher} say about: {question}?"
+    
     response = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",  # Updated model
-    messages=[
-        {"role": "system", "content": f"You are {philosopher}."},
-        {"role": "user", "content": question}
-    ],
-    max_tokens=150
-)
-    return response.choices[0].text.strip()
+        model="gpt-3.5-turbo",  # or "gpt-4" depending on your API access
+        messages=[
+            {"role": "system", "content": f"You are {philosopher}."},
+            {"role": "user", "content": question}
+        ],
+        max_tokens=150
+    )
+    
+    # Return the response from the assistant (new format)
+    return response['choices'][0]['message']['content'].strip()
 
 @app.route('/')
 def index():
